@@ -1,0 +1,27 @@
+[package]
+edition = "2021"
+rust-version = "1.60"
+name = "bryte_descriptor_attribute"
+version = "0.1.0-alpha.2"
+description = "Bryte-Descriptor attribute macro for defining an event"
+license = "Apache-2.0"
+resolver = "2"
+authors = ["Will Kennedy"]
+keywords = ["solana", "logging", "json", "parsing"]
+categories = ["Development tools"]
+exclude=["/tests", "/examples", "/benches", "/docs", "/target", "/.github", "/.gitignore", "/.gitattributes", "/.gitmodules", "/.travis.yml", "/.cargo-ok", "/.git", "/.idea"]
+
+
+[lib]
+proc-macro = true
+
+[dependencies]
+borsh = ">= 0.9.3, <= 0.10.3"
+borsh-derive = ">= 0.9.3, <= 0.10.3"
+bryte_descriptor_state = "0.1.0-alpha.1"
+base64 = "0.13.0"
+anyhow = "1.0.75"
+proc-macro2 = "1.0.69"
+quote = "1.0.33"
+syn = { version = "1.0.109", features = ["full"] }
+version = "3.0.0"

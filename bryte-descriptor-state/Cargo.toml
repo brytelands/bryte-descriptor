@@ -1,0 +1,24 @@
+[package]
+edition = "2021"
+rust-version = "1.60"
+name = "bryte_descriptor_state"
+version = "0.1.0-alpha.1"
+license = "Apache-2.0"
+resolver = "2"
+authors = ["Will Kennedy"]
+description = "Supporting library for Bryte-Descriptor structures"
+keywords = ["solana", "logging", "json", "parsing"]
+categories = ["Development tools"]
+exclude=["/tests", "/examples", "/benches", "/docs", "/target", "/.github", "/.gitignore", "/.gitattributes", "/.gitmodules", "/.travis.yml", "/.cargo-ok", "/.git", "/.idea"]
+
+
+[dependencies]
+version = "3.0.0"
+borsh = "0.10.3"
+borsh-derive = "0.10.3"
+sha2 = "0.10.7"
+bs58 = "0.5.0"
+thiserror = "1.0.48"
+base64 = "0.21.1"
+serde = { version = "1.0.189", features = ["derive"]}
+serde_json = "1.0.107"

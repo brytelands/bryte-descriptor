@@ -1,0 +1,9 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "bryte-descriptor-state",
+    "bryte-descriptor-attribute",
+    "bryte-descriptor-solana-demo/program",
+    "bryte-descriptor-client"
+]

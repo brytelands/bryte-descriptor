@@ -1,0 +1,431 @@
+export type SolaluminDemo = {
+  "version": "0.1.0",
+  "name": "solalumin_demo",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "exampleAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "signer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "updateAccount",
+      "accounts": [
+        {
+          "name": "exampleAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "signer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "newName",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "exampleAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "counter",
+            "type": "i32"
+          },
+          {
+            "name": "programId",
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "type": {
+              "defined": "BasicStruct"
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "BasicStruct",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "counter",
+            "type": "i32"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Datadef",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Null"
+          },
+          {
+            "name": "Boolean",
+            "fields": [
+              {
+                "name": "value",
+                "type": "bool"
+              }
+            ]
+          },
+          {
+            "name": "Array",
+            "fields": [
+              {
+                "name": "value",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "name": "Number",
+            "fields": [
+              {
+                "name": "value",
+                "type": "u64"
+              }
+            ]
+          },
+          {
+            "name": "String",
+            "fields": [
+              {
+                "name": "value",
+                "type": "string"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "CloudEvent",
+      "fields": [
+        {
+          "name": "data",
+          "type": {
+            "defined": "Datadef"
+          },
+          "index": false
+        },
+        {
+          "name": "dataBase64",
+          "type": {
+            "option": "string"
+          },
+          "index": false
+        },
+        {
+          "name": "datacontenttype",
+          "type": {
+            "option": "string"
+          },
+          "index": false
+        },
+        {
+          "name": "dataschema",
+          "type": {
+            "option": "string"
+          },
+          "index": false
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "index": false
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "index": false
+        },
+        {
+          "name": "specversion",
+          "type": "string",
+          "index": false
+        },
+        {
+          "name": "subject",
+          "type": {
+            "option": "string"
+          },
+          "index": false
+        },
+        {
+          "name": "time",
+          "type": {
+            "option": "string"
+          },
+          "index": false
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "index": false
+        }
+      ]
+    }
+  ]
+};
+
+export const IDL: SolaluminDemo = {
+  "version": "0.1.0",
+  "name": "solalumin_demo",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "exampleAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "signer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "updateAccount",
+      "accounts": [
+        {
+          "name": "exampleAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "signer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "newName",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "exampleAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "counter",
+            "type": "i32"
+          },
+          {
+            "name": "programId",
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "type": {
+              "defined": "BasicStruct"
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "BasicStruct",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "counter",
+            "type": "i32"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Datadef",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Null"
+          },
+          {
+            "name": "Boolean",
+            "fields": [
+              {
+                "name": "value",
+                "type": "bool"
+              }
+            ]
+          },
+          {
+            "name": "Array",
+            "fields": [
+              {
+                "name": "value",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "name": "Number",
+            "fields": [
+              {
+                "name": "value",
+                "type": "u64"
+              }
+            ]
+          },
+          {
+            "name": "String",
+            "fields": [
+              {
+                "name": "value",
+                "type": "string"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "CloudEvent",
+      "fields": [
+        {
+          "name": "data",
+          "type": {
+            "defined": "Datadef"
+          },
+          "index": false
+        },
+        {
+          "name": "dataBase64",
+          "type": {
+            "option": "string"
+          },
+          "index": false
+        },
+        {
+          "name": "datacontenttype",
+          "type": {
+            "option": "string"
+          },
+          "index": false
+        },
+        {
+          "name": "dataschema",
+          "type": {
+            "option": "string"
+          },
+          "index": false
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "index": false
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "index": false
+        },
+        {
+          "name": "specversion",
+          "type": "string",
+          "index": false
+        },
+        {
+          "name": "subject",
+          "type": {
+            "option": "string"
+          },
+          "index": false
+        },
+        {
+          "name": "time",
+          "type": {
+            "option": "string"
+          },
+          "index": false
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "index": false
+        }
+      ]
+    }
+  ]
+};

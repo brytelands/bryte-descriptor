@@ -1,0 +1,17 @@
+[features]
+seeds = false
+skip-lint = false
+
+[programs.localnet]
+bryte_descriptor_demo = "48dKJJqhS5B1oEGBzgDVBmz3KCRYeniD3CabZ5QehbTC"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "localnet"
+wallet = "~/solana-test-keys/QniegvdEUejghrw4FPV1Hj3K5tYcVZGzYa1jQhbPavF.json"
+
+[scripts]
+initialize_schemas = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/initialize-demo.ts"
+update_account = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/update-account.ts"
