@@ -1,6 +1,6 @@
 [package]
 name = "bryte_descriptor_client"
-version = "0.1.0-alpha.2"
+version = "0.1.0-alpha.3"
 edition = "2021"
 description = "Bryte-Descriptor client for retrieving account data as JSON"
 license = "Apache-2.0"
@@ -32,4 +32,4 @@ borsh-schema-writer = "0.1.0"
 base64 = "0.21.1"
 chrono = "0.4.31"
 tokio = {version = "1.33.0", features = ["full"]}
-bryte_descriptor_state = "0.1.0-alpha.1"
+bryte_descriptor_state = "0.1.0-alpha.2"
