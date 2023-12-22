@@ -2,6 +2,8 @@
 
 This is a suite of libraries that provide functionality as an alternative to IDLs for data *reads*.
 
+[![Watch the demo](https://img.youtube.com/vi/0jN9Wz95tGA/hqdefault.jpg)](https://www.youtube.com/embed/0jN9Wz95tGA)
+
 ### bryte-descriptor-state
 
 This library provides traits to define data that is used for creating and managing schemas and serialization for Solana accounts and events.
