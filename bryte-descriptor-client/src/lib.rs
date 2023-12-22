@@ -14,6 +14,35 @@ use solana_sdk::hash::{Hash, hash};
 use solana_sdk::pubkey::Pubkey;
 use anyhow::Result as Result;
 
+pub async fn get_raw_account_data(account_key: String, program_id: String, rpc_url: String) -> Result<([u8; 8], Vec<u8>)> {
+    let commitment_config = CommitmentConfig::finalized();
+    let client = RpcClient::new_with_commitment(rpc_url, commitment_config);
+
+    let account_config = RpcAccountInfoConfig {
+        encoding: Some(UiAccountEncoding::Base64),
+        data_slice: None,
+        commitment: None,
+        min_context_slot: None,
+    };
+
+    let account = Pubkey::from_str(&account_key).unwrap();
+    let account_data = client.get_account_with_config(&account, account_config.clone()).await.unwrap();
+
+    trace!("{:?}", account_data);
+    let data_bytes = account_data.value.unwrap().data;//general_purpose::STANDARD.decode(account_data.value.unwrap().data.as_slice()).unwrap();
+    trace!("{:?}", &data_bytes);
+
+    let mut data_payload: &[u8] = &data_bytes[..];
+    let discriminator: [u8; 8] = {
+        let mut discriminator = [0; 8];
+        discriminator.copy_from_slice(&data_bytes[..8]);
+        data_payload = &data_payload[8..];
+        discriminator
+    };
+
+    Ok((discriminator, data_payload.to_vec()))
+}
+
 pub async fn get_account_data(account_key: String, program_id: String, rpc_url: String) -> Result<Value> {
     let commitment_config = CommitmentConfig::finalized();
     let client = RpcClient::new_with_commitment(rpc_url, commitment_config);
@@ -58,6 +87,51 @@ pub async fn get_account_data(account_key: String, program_id: String, rpc_url: 
         .expect("Deserializing from schema failed.");
     trace!("result {:?}", result);
     Ok(result)
+}
+
+pub async fn get_account_schema(account_key: String, program_id: String, is_raw_data: bool, rpc_url: String) -> Result<Vec<u8>> {
+    let commitment_config = CommitmentConfig::finalized();
+    let client = RpcClient::new_with_commitment(rpc_url, commitment_config);
+
+    let account_config = RpcAccountInfoConfig {
+        encoding: Some(UiAccountEncoding::Base64),
+        data_slice: None,
+        commitment: None,
+        min_context_slot: None,
+    };
+
+    let account = Pubkey::from_str(&account_key).unwrap();
+    let account_data = client.get_account_with_config(&account, account_config.clone()).await.unwrap();
+
+    trace!("{:?}", account_data);
+    let data_bytes = account_data.value.unwrap().data;//general_purpose::STANDARD.decode(account_data.value.unwrap().data.as_slice()).unwrap();
+    trace!("{:?}", &data_bytes);
+
+    let mut data_payload: &[u8] = &data_bytes[..];
+
+    let discriminator: [u8; 8] = {
+        let mut discriminator = [0; 8];
+        discriminator.copy_from_slice(&data_bytes[..8]);
+        data_payload = &data_payload[8..];
+        discriminator
+    };
+
+    trace!("{:?}", &data_payload);
+
+    let program_key = Pubkey::from_str(&program_id).unwrap();
+    let (descriptor_key, _) = Pubkey::find_program_address(&[&discriminator], &program_key);
+    let mut account_data_descriptor = client.get_account_data(&descriptor_key).await.unwrap();
+    trace!("descriptor: {:?}", &account_data_descriptor);
+    let mut to_split = &account_data_descriptor[..];//base64::decode(account_data_descriptor.value.unwrap().data.as_slice()).unwrap();
+    //TODO CHANGE SCHEMA FROM VEC to ['u8'] todo 12 for anchor 4.. for non anchor....
+    let schema = if is_raw_data {
+        &to_split[..]
+    } else {
+        &to_split[12..]
+    };
+    trace!("schema: {:?}", schema);
+
+    Ok(schema.to_vec())
 }
 
 pub async fn get_discriminator(account_key: String, rpc_url: String) -> Result<String> {
