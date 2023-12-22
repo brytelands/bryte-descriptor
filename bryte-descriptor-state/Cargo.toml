@@ -2,7 +2,7 @@
 edition = "2021"
 rust-version = "1.60"
 name = "bryte_descriptor_state"
-version = "0.1.0-alpha.1"
+version = "0.1.0-alpha.2"
 license = "Apache-2.0"
 resolver = "2"
 authors = ["Will Kennedy"]
